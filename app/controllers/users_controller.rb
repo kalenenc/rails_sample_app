@@ -1,11 +1,9 @@
 class UsersController < ApplicationController
   def new
-    # debugger
   end
 
   def show
     @user = User.find(params[:id])
-    # debugger
   end
 
   def new
@@ -15,7 +13,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)    # Not the final implementation!
     if @user.save
-      # Handle a successful save.
+      flash[:success] = "Welcome to the Sample App!"
+      redirect_to user_url(@user)
     else
       render 'new'
     end
